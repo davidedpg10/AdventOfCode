@@ -77,10 +77,9 @@ func ParseNumberFromStringByWords(str string) []int {
 	numMap := make(map[int]int)
 	var ints []int
 
-	// identifying spelled out numbers and adding to numMap
-	// the last index variable keeps track of the last index found
-	// additionally when a value is found we add 1 to the last index so it doesn't start in the same
-	// spot as the last index attempt, which results in a loop
+	// identifies spelled out numbers, records the index in which they were found,
+	// recursively does this by starting the next index operation at the last index location (+1 to avoid getting stuck in endless loop)
+	// Exits loop at the first failure to find spelled out number
 	for numberName, num := range StringIntMap {
 		lastIndex := 0
 		for lastIndex >= 0 {
